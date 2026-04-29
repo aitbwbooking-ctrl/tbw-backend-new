@@ -1,55 +1,26 @@
-const express = require("express");
-const cors = require("cors");
+const express = require("express")
+const app = express()
 
-const app = express();
+app.use(express.json())
 
-app.use(cors());
-app.use(express.json());
-
-//////////////////////////////////////////////////
-// 🔥 HEALTH CHECK
-//////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+// 🔥 HEALTH
+//////////////////////////////////////////////////////
 
 app.get("/", (req, res) => {
-    res.send("TBW BACKEND LIVE");
-});
+    res.send("TBW BACKEND LIVE")
+})
 
-//////////////////////////////////////////////////
-// 🔥 SOS EVENT (app → server)
-//////////////////////////////////////////////////
+app.get("/health", (req, res) => {
+    res.json({ status: "OK" })
+})
 
-app.post("/sos", (req, res) => {
+//////////////////////////////////////////////////////
+// 🔥 PORT (RAILWAY)
+//////////////////////////////////////////////////////
 
-    console.log("🚨 SOS EVENT:");
-    console.log(req.body);
-
-    res.json({
-        status: "OK",
-        received: true
-    });
-});
-
-//////////////////////////////////////////////////
-// 🔥 VOICE / AI HOOK
-//////////////////////////////////////////////////
-
-app.post("/voice", (req, res) => {
-
-    const { text } = req.body;
-
-    console.log("🎤 VOICE:", text);
-
-    res.json({
-        reply: "Primljeno"
-    });
-});
-
-//////////////////////////////////////////////////
-// 🔥 START
-//////////////////////////////////////////////////
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT
 
 app.listen(PORT, () => {
-    console.log("🚀 TBW BACKEND RUNNING ON PORT", PORT);
-});
+    console.log(`TBW BACKEND RUNNING ON PORT ${PORT}`)
+})
