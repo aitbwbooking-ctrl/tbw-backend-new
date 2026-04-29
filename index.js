@@ -3,10 +3,6 @@ const app = express()
 
 app.use(express.json())
 
-//////////////////////////////////////////////////////
-// 🔥 HEALTH
-//////////////////////////////////////////////////////
-
 app.get("/", (req, res) => {
     res.send("TBW BACKEND LIVE")
 })
@@ -15,10 +11,7 @@ app.get("/health", (req, res) => {
     res.json({ status: "OK" })
 })
 
-//////////////////////////////////////////////////////
-// 🔥 PORT (RAILWAY)
-//////////////////////////////////////////////////////
-
+// 🔥 KLJUČNO
 const PORT = process.env.PORT
 
 app.listen(PORT, () => {
